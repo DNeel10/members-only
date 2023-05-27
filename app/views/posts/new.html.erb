@@ -1,0 +1,9 @@
+<h1>Create a new Post</h1>
+
+<%= form_with model: @post do |form| %>
+  <p><%= form.label :title, "Title" %>
+  <%= form.text_field :title, placeholder: "Enter Title" %></p>
+  <p><%= form.label :body, "Body" %>
+  <%= form.text_area :body, placeholder: "Enter text...", :cols => "60", :rows => "20" %></p>
+  <%= form.submit %>
+<% end %>
