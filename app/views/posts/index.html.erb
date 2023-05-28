@@ -1,8 +1,29 @@
+<% if user_signed_in? %>
+  <p>Signed in</p>
+  <%= button_to "Sign Out", destroy_user_session_path, :method => :delete %>
+<% else %>
+  <%= button_to "Sign In", new_user_session_path %>
+<% end %>
+
 <h1>Posts!</h1>
 
+
 <% @posts.each do |post| %>
-  <ul>
-    <li><%= post.title %></li>
-    <li><%= post.body %></li>
-  <ul>
+  <div class = "article-container">
+    <div class = "author">
+      <% if user_signed_in? %>
+        Author: <%= post.user.email%>
+      <% end %>
+    </div><br>
+    <div class = "post-title">Title: <%= post.title %> </div><br>
+    <div class = "post-body"> Body: <%= post.body %> </div><br>
+  </div><br>
 <% end %>
+
+<button>
+<%= link_to "Home", root_path %>
+</button>
+
+<button>
+<%= link_to "Create New Post", new_post_path %>
+</button>
