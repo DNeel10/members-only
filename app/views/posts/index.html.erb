@@ -1,5 +1,5 @@
 <% if user_signed_in? %>
-  <p>Signed in</p>
+  <p>Signed in as <%= current_user.email %></p>
   <%= button_to "Sign Out", destroy_user_session_path, :method => :delete %>
 <% else %>
   <%= button_to "Sign In", new_user_session_path %>
@@ -10,13 +10,15 @@
 
 <% @posts.each do |post| %>
   <div class = "article-container">
+    <div class = "post-title">Title: <%= post.title %> </div><br>
+    <div class = "post-body"> Body: <%= post.body %> </div><br>
     <div class = "author">
       <% if user_signed_in? %>
         Author: <%= post.user.email%>
+      <% else %>
+        Posted by: Anonymous
       <% end %>
     </div><br>
-    <div class = "post-title">Title: <%= post.title %> </div><br>
-    <div class = "post-body"> Body: <%= post.body %> </div><br>
   </div><br>
 <% end %>
 
